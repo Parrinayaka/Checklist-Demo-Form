@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenPro Machines by Department</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f2f8f5;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .logo img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #1e6b5b;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 30px;
+      width: 250px;
+      outline: none;
+    }
+    .machine-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .machine {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .machine:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="logo.png" alt="GreenPro Logo">
+  </div>
+  <h1>Select Department</h1>
+
+  <select id="departmentSelect">
+    <option value="">-- Choose Department --</option>
+    <option value="Accounts">Lamanition</option>
+    <option value="HR">Sulzer</option>
+    <option value="Production">Tap Plant</option>
+    <option value="IT">Circular</option>
+  </select>
+
+  <div class="machine-list" id="machineList"></div>
+
+  <script>
+    // Department-wise machine data
+    const machinesByDept = {
+      "Accounts": ["LAM-PC-01", "LAM-PC-02", "LAM-LAP-01"],
+      "HR": ["SZR-PC-01", "SZR-LAP-01"],
+      "Production": ["T-P-PC-01", "T-P-PC-02", "T-P-PC-03"],
+      "IT": ["LOOM-PC-01", "LOOM-SRV-01", "LOOM-LAP-01"]
+    };
+
+    const select = document.getElementById('departmentSelect');
+    const list = document.getElementById('machineList');
+
+    select.addEventListener('change', function() {
+      const dept = this.value;
+      list.innerHTML = ''; // clear previous list
+
+      if (dept && machinesByDept[dept]) {
+        machinesByDept[dept].forEach(machine => {
+          const div = document.createElement('div');
+          div.className = 'machine';
+          div.textContent = machine;
+          div.onclick = () => openChecklist(machine, dept);
+          list.appendChild(div);
+        });
+      }
+    });
+
+    function openChecklist(machine, dept) {
+      window.location.href = `checklist.html?department=${encodeURIComponent(dept)}&machine=${encodeURIComponent(machine)}`;
+    }
+  </script>
+</body>
+</html>
