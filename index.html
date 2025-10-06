@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenPro Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1e6b5b, #76b947);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
+    }
+    .login-box img {
+      width: 140px;
+      margin-bottom: 15px;
+    }
+    h2 {
+      color: #1e6b5b;
+      margin-bottom: 25px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1e6b5b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #155e4e;
+    }
+    p {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    a{
+        color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <img src="logo.png" alt="GreenPro Logo">
+    <h2>Login to GreenPro</h2>
+    <form>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit"><a href="./machines.html">login</a></button>
+    </form>
+    <p>Protect. Grow. Prosper.</p>
+  </div>
+</body>
+</html>
