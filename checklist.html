@@ -5,163 +5,183 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Employee Computer Checklist</title>
   <style>
-    :root{
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --accent:#2b6cb0;
-      --muted:#6b7280;
-      --success:#16a34a;
-      --danger:#dc2626;
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --accent: #2b6cb0;
+      --muted: #6b7280;
+      --success: #16a34a;
+      --danger: #dc2626;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--bg),#eef2ff 60%);
-      color:#111827;
-      padding:24px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg), #eef2ff 60%);
+      color: #111827;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .container{
-      max-width:960px;
-      margin:0 auto;
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
     }
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
     }
-    header h1{
-      margin:0;
-      font-size:20px;
-      letter-spacing:0.2px;
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.2px;
     }
-    .card{
-      background:var(--card);
-      border-radius:12px;
-      box-shadow:0 6px 18px rgba(15,23,42,0.08);
-      padding:20px;
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+      padding: 20px;
     }
-    .form-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:12px;
+    .form-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
     }
-    label{
-      font-size:13px;
-      color:var(--muted);
-      display:block;
-      margin-bottom:6px;
+    label {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
     }
-    input[type="text"], input[type="date"], select{
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #e6e9ef;
-      min-width:160px;
-      font-size:14px;
-      background:#fff;
+    input[type="text"], input[type="date"], select {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #e6e9ef;
+      min-width: 160px;
+      font-size: 14px;
+      background: #fff;
     }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-      margin-bottom:12px;
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #e6e9ef;
+      font-size: 14px;
     }
-    @media (max-width:700px){ .grid{ grid-template-columns:1fr; } .form-row{ flex-direction:column; } }
-    .section-title{
-      font-weight:600;
-      margin:8px 0 6px 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
     }
-    .checklist{
-      display:grid;
-      gap:8px;
-      padding:8px 0 0 0;
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
     }
-    .item{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid #eef2f6;
+    .section-title {
+      font-weight: 600;
+      margin: 8px 0 6px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .item label{
-      margin:0;
-      color:#111827;
-      font-size:14px;
-      font-weight:500;
+    .checklist {
+      display: grid;
+      gap: 8px;
+      padding: 8px 0 0 0;
     }
-    .muted{
-      color:var(--muted);
-      font-size:13px;
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #eef2f6;
     }
-    .controls{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
+    .item label {
+      margin: 0;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 500;
     }
-    button{
-      padding:9px 12px;
-      border-radius:8px;
-      border:0;
-      background:var(--accent);
-      color:white;
-      font-weight:600;
-      cursor:pointer;
-      box-shadow:0 6px 12px rgba(43,108,176,0.12);
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
     }
-    button.secondary{
-      background:#eef2ff;
-      color:var(--accent);
-      box-shadow:none;
-      border:1px solid rgba(43,108,176,0.08);
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    button.warn{
-      background:var(--danger);
-      box-shadow:0 6px 12px rgba(220,38,38,0.12);
+    button {
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 0;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(43, 108, 176, 0.12);
     }
-    .actions{
-      display:flex;
-      gap:8px;
-      margin-top:12px;
-      flex-wrap:wrap;
+    button.secondary {
+      background: #eef2ff;
+      color: var(--accent);
+      box-shadow: none;
+      border: 1px solid rgba(43, 108, 176, 0.08);
     }
-    footer{
-      margin-top:14px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
+    button.warn {
+      background: var(--danger);
+      box-shadow: 0 6px 12px rgba(220, 38, 38, 0.12);
     }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    footer {
+      margin-top: 14px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    /* Before/After Image Layout */
+.image-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.image-col {
+  flex: 1;
+  min-width: 280px;
+}
+.img-preview img {
+  margin-top: 8px;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
 
     /* Print */
-    @media print{
-      body{ background: white; padding:0; }
-      header .controls, .no-print{ display:none !important; }
-      .card{ box-shadow:none; border-radius:0; padding:6mm; }
-      button{ display:none; }
-    }
     @media print {
-    #imagePreview img {
-    max-width: 100%;
-    margin-top: 8px;
-  }
-  @media print {
-  textarea {
-    border: none !important;
-    border-bottom: 1px solid #000 !important;
-    resize: none !important;
-    height: auto;
-  }
-}
-
-}
-
+      body { background: white; padding: 0; }
+      header .controls, .no-print { display: none !important; }
+      .card { box-shadow: none; border-radius: 0; padding: 6mm; }
+      button { display: none; }
+      img { max-width: 100%; margin-top: 8px; }
+      textarea {
+        border: none !important;
+        border-bottom: 1px solid #000 !important;
+        resize: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -177,6 +197,7 @@
 
     <main class="card" role="main">
       <form id="checklistForm" autocomplete="off" onsubmit="return false;">
+
         <div class="form-row">
           <div>
             <label for="empName">Employee Name</label>
@@ -205,11 +226,22 @@
           <div class="item"><input type="checkbox" id="hw_dock"><label for="hw_dock">Docking Station</label></div>
           <div class="item"><input type="checkbox" id="hw_power"><label for="hw_power">Power adapter & cables</label></div>
         </div>
-        <div style="margin-top:14px;">
-        <label for="issueImage">Upload Image (e.g. damage / issue)</label>
-        <input type="file" id="issueImage" accept="image/*">
-        <div id="imagePreview" style="margin-top:8px;"></div>
-        </div>
+
+        <!-- Before and After Service Images -->
+        <!-- Before and After Service Images -->
+<div class="image-row">
+  <div class="image-col">
+    <label for="beforeImage">Before Service Image</label>
+    <input type="file" id="beforeImage" accept="image/*">
+    <div id="beforePreview" class="img-preview"></div>
+  </div>
+  <div class="image-col">
+    <label for="afterImage">After Service Image</label>
+    <input type="file" id="afterImage" accept="image/*">
+    <div id="afterPreview" class="img-preview"></div>
+  </div>
+</div>
+
 
         <div class="section-title" style="margin-top:10px;">
           <div>Software & Access</div>
@@ -248,13 +280,11 @@
           <div class="item"><input type="checkbox" id="add_training"><label for="add_training">Training materials provided</label></div>
           <div class="item"><input type="checkbox" id="add_support"><label for="add_support">IT support contact shared</label></div>
         </div>
-        
+
         <div style="margin-top:14px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
           <div style="flex:1">
             <label for="notes">Notes / Remarks</label>
-            <textarea id="notes" rows="4" placeholder="e.g. Serial numbers, damage details, special instructions" 
-              style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px;"></textarea>
-
+            <textarea id="notes" rows="4" placeholder="e.g. Serial numbers, damage details, special instructions"></textarea>
           </div>
           <div style="min-width:220px;">
             <label>Signatures</label>
@@ -263,12 +293,6 @@
               <input id="itSign" type="text" placeholder="IT staff name" style="flex:1;">
             </div>
           </div>
-        </div>
-
-        <div style="margin-top:14px;">
-        <label for="issueImage">Upload Image (e.g. damage / issue)</label>
-        <input type="file" id="issueImage" accept="image/*">
-        <div id="imagePreview" style="margin-top:8px;"></div>
         </div>
 
         <div class="actions no-print">
@@ -280,9 +304,6 @@
         </div>
 
       </form>
-      <!-- 🔽 Insert this inside your <body> where the form is (preferably near notes section) -->
-
-
     </main>
 
     <footer class="no-print">
@@ -291,10 +312,7 @@
   </div>
 
   <script>
-    // IDs of fields to store
-    const CHECKLIST_KEY = 'employee_checklist_v1';
-
-    // collect all checkbox ids in this form
+    const CHECKLIST_KEY = 'employee_checklist_v2';
     const checkboxIds = [
       'hw_laptop','hw_monitor','hw_keyboard','hw_mouse','hw_headset','hw_dock','hw_power',
       'sw_os','sw_av','sw_vpn','sw_office','sw_erp','sw_email','sw_userid','sw_network','sw_printer',
@@ -303,53 +321,64 @@
     ];
 
     function readForm(){
-    const data = {
-    employeeName: document.getElementById('empName').value || '',
-    department: document.getElementById('department').value || '',
-    dateIssued: document.getElementById('dateIssued').value || '',
-    notes: document.getElementById('notes').value || '',
-    empSignature: document.getElementById('empSign').value || '',
-    itSignature: document.getElementById('itSign').value || '',
-    imageData: document.getElementById('issueImage').dataset.base64 || '',
-    items: {}
-  };
-  checkboxIds.forEach(id=>{
-    const el = document.getElementById(id);
-    data.items[id] = !!(el && el.checked);
-    });
-    return data;
+      const data = {
+        employeeName: document.getElementById('empName').value || '',
+        department: document.getElementById('department').value || '',
+        dateIssued: document.getElementById('dateIssued').value || '',
+        notes: document.getElementById('notes').value || '',
+        empSignature: document.getElementById('empSign').value || '',
+        itSignature: document.getElementById('itSign').value || '',
+        imageBefore: document.getElementById('beforeImage').dataset.base64 || '',
+        imageAfter: document.getElementById('afterImage').dataset.base64 || '',
+        items: {}
+      };
+      checkboxIds.forEach(id=>{
+        const el = document.getElementById(id);
+        data.items[id] = !!(el && el.checked);
+      });
+      return data;
     }
 
-
     function populateForm(data){
-  if(!data) return;
-  document.getElementById('empName').value = data.employeeName || '';
-  document.getElementById('department').value = data.department || '';
-  document.getElementById('dateIssued').value = data.dateIssued || '';
-  document.getElementById('notes').value = data.notes || '';
-  document.getElementById('empSign').value = data.empSignature || '';
-  document.getElementById('itSign').value = data.itSignature || '';
+      if(!data) return;
+      document.getElementById('empName').value = data.employeeName || '';
+      document.getElementById('department').value = data.department || '';
+      document.getElementById('dateIssued').value = data.dateIssued || '';
+      document.getElementById('notes').value = data.notes || '';
+      document.getElementById('empSign').value = data.empSignature || '';
+      document.getElementById('itSign').value = data.itSignature || '';
 
-  if(data.items){
-    checkboxIds.forEach(id=>{
-      const el = document.getElementById(id);
-      if(el) el.checked = !!data.items[id];
-    });
-  }
+      if(data.items){
+        checkboxIds.forEach(id=>{
+          const el = document.getElementById(id);
+          if(el) el.checked = !!data.items[id];
+        });
+      }
 
-  // Restore uploaded image
-  if(data.imageData){
-    const img = document.createElement('img');
-    img.src = data.imageData;
-    img.style.maxWidth = '100%';
-    img.style.marginTop = '8px';
-    const preview = document.getElementById('imagePreview');
-    preview.innerHTML = '';
-    preview.appendChild(img);
-    document.getElementById('issueImage').dataset.base64 = data.imageData;
-  }
-}
+      // Restore Before Image
+      if(data.imageBefore){
+        const img = document.createElement('img');
+        img.src = data.imageBefore;
+        img.style.maxWidth = '100%';
+        img.style.marginTop = '8px';
+        const preview = document.getElementById('beforePreview');
+        preview.innerHTML = '';
+        preview.appendChild(img);
+        document.getElementById('beforeImage').dataset.base64 = data.imageBefore;
+      }
 
+      // Restore After Image
+      if(data.imageAfter){
+        const img = document.createElement('img');
+        img.src = data.imageAfter;
+        img.style.maxWidth = '100%';
+        img.style.marginTop = '8px';
+        const preview = document.getElementById('afterPreview');
+        preview.innerHTML = '';
+        preview.appendChild(img);
+        document.getElementById('afterImage').dataset.base64 = data.imageAfter;
+      }
+    }
 
     function saveChecklist(){
       const data = readForm();
@@ -369,34 +398,35 @@
         alert('Checklist loaded.');
       }catch(e){
         console.error(e);
-        alert('Failed to load saved checklist (corrupted data).');
+        alert('Failed to load saved checklist.');
       }
     }
 
     function clearForm(){
       if(!confirm('Clear the form?')) return;
       document.getElementById('checklistForm').reset();
+      document.getElementById('beforePreview').innerHTML = '';
+      document.getElementById('afterPreview').innerHTML = '';
     }
 
     function deleteSaved(){
-      if(!confirm('Delete saved checklist from this browser?')) return;
+      if(!confirm('Delete saved checklist?')) return;
       localStorage.removeItem(CHECKLIST_KEY);
       alert('Saved checklist deleted.');
     }
 
     function exportJSON(){
       const data = readForm();
-      const filename = `employee-checklist-${(data.employeeName || 'unknown').replace(/\s+/g,'_') || 'checklist'}.json`;
+      const filename = `employee-checklist-${(data.employeeName || 'unknown').replace(/\s+/g,'_')}.json`;
       const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
-      a.remove(); URL.revokeObjectURL(url);
+      a.href = url; a.download = filename; a.click();
+      URL.revokeObjectURL(url);
     }
 
     function exportCSV(){
       const data = readForm();
-      // Simple CSV: key,value pairs
       const rows = [];
       rows.push(['Employee Name', data.employeeName]);
       rows.push(['Department', data.department]);
@@ -404,79 +434,59 @@
       rows.push(['Notes', data.notes]);
       rows.push(['Employee Signature', data.empSignature]);
       rows.push(['IT Signature', data.itSignature]);
+      rows.push(['Before Image', data.imageBefore ? 'Yes' : 'No']);
+      rows.push(['After Image', data.imageAfter ? 'Yes' : 'No']);
       rows.push([]);
-      rows.push(['Item','Checked']);
+      rows.push(['Checklist Item','Checked']);
       checkboxIds.forEach(id=>{
         const label = document.querySelector(`label[for="${id}"]`);
-        const name = label ? label.innerText.trim() : id;
-        rows.push([name, data.items[id] ? 'Yes' : 'No']);
+        rows.push([label?label.innerText:id, data.items[id]?'Yes':'No']);
       });
-      const csv = rows.map(r => r.map(cell => `"${String(cell || '').replace(/"/g,'""')}"`).join(',')).join('\n');
-      const filename = `employee-checklist-${(data.employeeName || 'checklist').replace(/\s+/g,'_')}.csv`;
-      const blob = new Blob([csv], {type:'text/csv'});
+      const csv = rows.map(r=>r.map(x=>`"${(x||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv],{type:'text/csv'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
-      a.remove(); URL.revokeObjectURL(url);
+      a.href = url;
+      a.download = `employee-checklist-${(data.employeeName||'unknown').replace(/\s+/g,'_')}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
-    // Print will open print dialog
-    function doPrint(){
+    function printChecklist(){
       window.print();
     }
 
-    // Attach listeners
-    document.getElementById('saveBtn').addEventListener('click', saveChecklist);
-    document.getElementById('loadBtn').addEventListener('click', loadChecklist);
-    document.getElementById('clearBtn').addEventListener('click', clearForm);
-    document.getElementById('deleteBtn').addEventListener('click', deleteSaved);
-    document.getElementById('exportJsonBtn').addEventListener('click', exportJSON);
-    document.getElementById('exportCsvBtn').addEventListener('click', exportCSV);
-    document.getElementById('printBtn').addEventListener('click', doPrint);
-    document.getElementById('downloadPdfBtn').addEventListener('click', () => {
-      alert('To download a PDF, use the browser print dialog and choose "Save as PDF".');
-      window.print();
-    });
+    function handleImageUpload(inputId, previewId){
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      input.addEventListener('change',()=>{
+        const file = input.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = e=>{
+          input.dataset.base64 = e.target.result;
+          preview.innerHTML = '';
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.maxWidth = '100%';
+          img.style.marginTop = '8px';
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
-    // Auto-load saved on page load if present
-    window.addEventListener('DOMContentLoaded', () => {
-      const raw = localStorage.getItem(CHECKLIST_KEY);
-      if(raw){
-        try{
-          const parsed = JSON.parse(raw);
-          populateForm(parsed.payload || parsed);
-        }catch(e){}
-      }
-      // set today's date as default if empty
-      const dateEl = document.getElementById('dateIssued');
-      if(dateEl && !dateEl.value){
-        const d = new Date();
-        const iso = d.toISOString().slice(0,10);
-        dateEl.value = iso;
-      }
-    });
-    // Handle image upload and preview
-document.getElementById('issueImage').addEventListener('change', function(event){
-  const file = event.target.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const base64 = e.target.result;
-    document.getElementById('issueImage').dataset.base64 = base64;
-
-    // Show preview
-    const img = document.createElement('img');
-    img.src = base64;
-    img.style.maxWidth = '100%';
-    img.style.marginTop = '8px';
-    const preview = document.getElementById('imagePreview');
-    preview.innerHTML = '';
-    preview.appendChild(img);
-  };
-  reader.readAsDataURL(file);
-});
-
+    // Event bindings
+    document.getElementById('saveBtn').onclick = saveChecklist;
+    document.getElementById('loadBtn').onclick = loadChecklist;
+    document.getElementById('clearBtn').onclick = clearForm;
+    document.getElementById('deleteBtn').onclick = deleteSaved;
+    document.getElementById('exportJsonBtn').onclick = exportJSON;
+    document.getElementById('exportCsvBtn').onclick = exportCSV;
+    document.getElementById('printBtn').onclick = printChecklist;
+    document.getElementById('downloadPdfBtn').onclick = ()=>printChecklist();
+    handleImageUpload('beforeImage','beforePreview');
+    handleImageUpload('afterImage','afterPreview');
   </script>
 </body>
 </html>
